@@ -1,3 +1,8 @@
+## Filter Category Card
+
+![Image alt](https://github.com/EvgeniyBudaev/react-filter-card/raw/master/public/images/readme1.jpg)
+![Image alt](https://github.com/EvgeniyBudaev/react-filter-card/raw/master/public/images/readme2.jpg)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

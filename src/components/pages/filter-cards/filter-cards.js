@@ -7,6 +7,8 @@ import rwws from "./images/react-work-with-server.jpg";
 import trafficLights from "./images/traffic_lights.jpg";
 import java from "./images/java.jpg";
 import swedishBitterness from "./images/swedish-bitterness.jpg";
+import surf from './images/surf.jpg';
+import minimo from './images/minimo.jpg';
 import Card from "./card";
 
 class FilterCards extends Component {
@@ -48,7 +50,21 @@ class FilterCards extends Component {
         urlSite: "https://swedish-bitterness.firebaseapp.com",
         urlGithub: "https://github.com/EvgeniyBudaev/Swedish_Bitterness",
         id: 5
-      }
+      },
+      {
+        images: surf,
+        category: "pageProofs",
+        urlSite: "https://westshore-8448b.firebaseapp.com/",
+        urlGithub: "https://github.com/EvgeniyBudaev/Surf",
+        id: 6
+      },
+      {
+        images: minimo,
+        category: "pageProofs",
+        urlSite: "https://minimo-da92b.firebaseapp.com",
+        urlGithub: "https://github.com/EvgeniyBudaev/Minimo",
+        id: 7
+      },
     ]
   };
 
@@ -83,7 +99,34 @@ class FilterCards extends Component {
     this.renderCards();
   }
 
+  buttons = [
+    {value: 'all', label: 'All'},
+    {value: 'react', label: 'React'},
+    {value: 'javascript', label: 'JavaScript'},
+    {value: 'java', label: 'Java'},
+    {value: 'pageProofs', label: 'Вёрстка'}
+  ]
+
+
   render() {
+
+    const { visibility } = this.state;
+
+    const buttons = this.buttons.map(({value, label}) => {
+    const isActiveButton = visibility === value;
+    const clazz = isActiveButton ? 'button active' : 'button';
+      return (
+        <li className="filter-button-group__item hover-target" key={value}>
+         <button
+          value={value}
+          onClick={ this.cardFilterAction }
+          className={clazz}      
+         >
+            {label}
+          </button>
+        </li>
+      )
+    })
 
     return (
       <div className="container">
@@ -94,55 +137,7 @@ class FilterCards extends Component {
             <div className="filters filter-button-group">
               <ul className="filter-button-group__items">
                 <h4>
-                  <li className="filter-button-group__item active hover-target">
-                    <button
-                      value="all"
-                      onClick={this.cardFilterAction}
-                      className="button active"
-                    >
-                      Все
-                    </button>
-                  </li>
-
-                  <li className="filter-button-group__item hover-target">
-                    <button
-                      value="react"
-                      onClick={this.cardFilterAction}
-                      className="button"
-                    >
-                      React
-                    </button>
-                  </li>
-
-                  <li className="filter-button-group__item hover-target">
-                    <button
-                      value="javascript"
-                      onClick={this.cardFilterAction}
-                      className="button"
-                    >
-                      JavaScript
-                    </button>
-                  </li>
-
-                  <li className="filter-button-group__item hover-target">
-                    <button
-                      value="java"
-                      onClick={this.cardFilterAction}
-                      className="button"
-                    >
-                      Java
-                    </button>
-                  </li>
-
-                  <li className="filter-button-group__item hover-target">
-                    <button
-                      value="pageProofs"
-                      onClick={this.cardFilterAction}
-                      className="button"
-                    >
-                      Вёрстка
-                    </button>
-                  </li>
+                  {buttons}
                 </h4>
               </ul>
             </div>
